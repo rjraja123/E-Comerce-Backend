@@ -1,7 +1,19 @@
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const hashPassword = require("./hashPassword");
+const cors = require("cors");
+const express = require('express');
 
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(
+  cors({
+    origin: ["https://rjemartstore.netlify.app", "http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 async function dbConnect() {
