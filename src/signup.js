@@ -5,14 +5,14 @@ const hashPassword = require("./hashPassword");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 async function dbConnect() {
-  const uri = "mongodb://127.0.0.1:27017";
+  // const uri = "mongodb://127.0.0.1:27017";
 
-  // const password = encodeURIComponent('Mangalkumar123@');
-  // const user = encodeURIComponent('mscc');
-  // const authMechanism = "SCRAM";
+    const password = encodeURIComponent(process.env.password);
+    const user = encodeURIComponent(process.env.user);
+    const authMechanism = encodeURIComponent(process.env.auth);
 
-  // uri = `mongodb+srv://${user}:${password}@cluster0.ocdqctt.mongodb.net/?authMechanism=${authMechanism}`
-
+    uri = `mongodb+srv://${user}:${password}@rajnishapi.iezvdde.mongodb.net/?authMechanism=${authMechanism}`
+    
   const dbName = "Rajnish";
   // console.log('Your Request got here dbConnect')
   const client = new MongoClient(uri, {
