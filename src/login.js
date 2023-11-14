@@ -3,6 +3,13 @@ const bcrypt = require("bcryptjs");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const hashPassword = require("./hashPassword");
 const { MongoClient, ServerApiVersion } = require("mongodb");
+const cors = require("cors");
+app.use(
+    cors({
+      origin: "https://rjemartstore.netlify.app",
+      origin: "http://localhost:3000",
+    })
+  );
 
 async function dbConnect() {
   // const uri = "mongodb://0.0.0.0:27017";
