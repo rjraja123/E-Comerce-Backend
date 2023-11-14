@@ -1,25 +1,21 @@
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const hashPassword = require("./hashPassword");
-const cors = require("cors");
-app.use(
-  cors({
-    origin: "https://rjemartstore.netlify.app",
-    // origin: "http://localhost:3000",
-  })
-);
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 async function dbConnect() {
   // const uri = "mongodb://127.0.0.1:27017";
 
-    const password = encodeURIComponent(process.env.password);
-    const user = encodeURIComponent(process.env.user);
-    const authMechanism = encodeURIComponent(process.env.auth);
+  const password = encodeURIComponent(process.env.password);
+  // const user = encodeURIComponent(process.env.user);
+  // const authMechanism = encodeURIComponent(process.env.auth);
 
-    uri = `mongodb+srv://${user}:${password}@rajnishapi.iezvdde.mongodb.net/?authMechanism=${authMechanism}`
-    
+  // uri = `mongodb+srv://${user}:${password}@rajnishapi.iezvdde.mongodb.net/?authMechanism=${authMechanism}`;
+  uri = `mongodb+srv://rajnish:${password}@rajnishapi.iezvdde.mongodb.net/?retryWrites=true&w=majority`;
+  // console.log('uri : ', uri)
+  // uri = `mongodb+srv://${user}:${password}@rajnishapi.iezvdde.mongodb.net/Rajnish?authMechanism=${authMechanism}`;
+
   const dbName = "Rajnish";
   // console.log('Your Request got here dbConnect')
   const client = new MongoClient(uri, {
